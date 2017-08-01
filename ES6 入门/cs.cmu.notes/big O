@@ -1,0 +1,6 @@
+
+def countLength(L);
+    count = 0;
+    for i in range(Len(L));
+        count += 1;
+        return count;
