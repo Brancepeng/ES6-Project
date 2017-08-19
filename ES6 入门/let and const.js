@@ -1,7 +1,7 @@
 /**
  * Created by pengzongcheng on 2017/6/3.
  */
-    'use strict';
+'use strict';
 /*{
  let a = 10;
  var b = 1;
@@ -44,6 +44,39 @@
 
 //es5及之前只存在全局变量和函数作用域,出现很多不合理的情况,例如:内层变量可能会覆盖外层变量,在循环体内的计数变量变为全局变量.
 //es6引入let和const其实就是为JavaScript增加了块级作用域.
+/*function f1() {
+ let n = 5;
+ if (true) {
+ let n = 10;
+ }
+ console.log(n); // 5
+ }*/
+//上面的函数有两个代码块，都声明了变量n，运行后输出5。这表示外层代码块不受内层代码块的影响。如果两次都使用var定义变量n，最后输出的值才是10。
+
+/*//ES6 允许块级作用域的任意嵌套:
+ {{{{{let insane = 'Hello World'}}}}};
+ //上面代码使用了一个五层的块级作用域。外层作用域无法读取内层作用域的变量。*/
+
+/*
+ //内层作用域可以定义外层作用域的同名变量;
+ {{{{
+ let insane = 'Hello World';
+ {let insane = 'Hello World'}
+ }}}};
+ */
+
+/*//块级作用域的出现，实际上使得获得广泛应用的立即执行函数表达式（IIFE）不再必要了:
+ // IIFE 写法
+ (function () {
+ var tmp = ...;
+ ...
+ }());
+
+ // 块级作用域写法
+ {
+ let tmp = ...;
+ ...
+ }*/
 
 /*var i, x, y;a = b = [];
  for (i = 0; i < a.length; i++) {
