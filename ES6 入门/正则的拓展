@@ -1,0 +1,73 @@
+1.正则表达式是用于匹配字符串中字符组合的模式.在 JavaScript中，正则表达式也是对象。这些模式被用于 RegExp 的 exec 和
+ test 方法, 以及 String 的 match、replace、search 和 split 方法。
+
+如何创建一个正则表达式?
+A.使用一个正则表达式字面量，其由包含在斜杠之间的模式组成，如下所示：
+/* pattern/flags
+*/
+const regex =  /ab+c/;
+const regex = /^[a-zA-Z]+[0-9]*\W?_$/gi;
+在加载脚本后，正则表达式字面值提供正则表达式的编译。
+
+B.或者调用RegExp对象的构造函数，如下所示：
+
+new RegExp(pattern[,flags]);
+
+let regex = new RegExp("ab+c");
+
+let regex = new RegExp(/^[a-zA-Z]+[0-9]*\W?_$/, "gi");
+
+2.编写一个正则表达式的模式
+使用简单的模式
+{let regex = /abc/; regex.test('The latest airplane designs evolved from slabcraft.');}
+
+{let regex = /abc/; regex.exec('The latest airplane designs evolved from slabcraft.');}
+
+{let regex = /abc/; regex.test('Grab crab');}
+
+使用特殊字符
+当你需要搜索一个比直接匹配需要更多条件的匹配时，比如寻找一个或多个 'b'，或者寻找空格，那么这时模式将要包含特殊字符。
+比如， 模式/ab*c/匹配了一个单独的 'a' 后面跟了零个或者多个 'b'（*的意思是前面一项出现了零个或者多个），且后
+面跟着 'c' 的任何字符组合。在字符串 "cbbabbbbcdebc" 中，这个模式匹配了子字符串 "abbbbc"。
+
+{let regex = /ab*c/; regex.test('cbbabbbbcdebc');}
+
+正则表达式中的特殊字符:
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions
+
+\  例如，模式 /a*/ 代表会匹配 0 个或者多个 a。相反，模式 /a\*/ 将 '*' 的特殊性移除，从而可以匹配像 "a*" 这样的字符串。
+使用 new RegExp("pattern") 的时候不要忘记将 \ 进行转义，因为 \ 在字符串里面也是一个转义字符。
+
+^ 匹配输入的开始. 例如，/^A/ 并不会匹配 "an A" 中的 'A'，但是会匹配 "An E" 中的 'A'。
+
+$ 匹配输入的结束. 例如，/t$/ 并不会匹配 "eater" 中的 't'，但是会匹配 "eat" 中的 't'。
+
+* 匹配前一个表达式0次或多次。等价于 {0,}。 例如，/bo*/会匹配 "A ghost boooooed" 中的 'booooo' 和
+"A bird warbled" 中的 'b'，但是在 "A goat grunted" 中将不会匹配任何东西。
+
++ 匹配前面一个表达式1次或者多次。等价于 {1,}。
+
+  例如，/a+/匹配了在 "candy" 中的 'a'，和在 "caaaaaaandy" 中所有的 'a'。
+
+? 匹配前面一个表达式0次或者1次。等价于 {0,1}。例如，/e?le?/ 匹配 "angel" 中的 'el'，和 "angle" 中的 'le' 以及"oslo' 中的'l'。
+
+. （小数点）匹配除换行符之外的任何单个字符。
+
+
+3.使用正则表达式的方法
+
+exec 一个在字符串中执行查找匹配的RegExp方法，它返回一个数组（未匹配到则返回null）。
+{let regex = /ab*c/; regex.exec('cbbabbbbcdebc');}
+
+test 一个在字符串中测试是否匹配的RegExp方法，它返回true或false。
+{let regex = /ab*c/; regex.test('cbbabbbbcdebc');}
+
+match	一个在字符串中执行查找匹配的String方法，它返回一个数组或者在未匹配到时返回null。
+{let regex = /ab*c/; 'cbbabbbbcdebc'.match(regex);}
+
+search	一个在字符串中测试匹配的String方法，它返回匹配到的位置索引，或者在失败时返回-1。
+{let regex = /ab*c/; 'cbbabbbbcdebc'.search(regex);}
+
+replace	一个在字符串中执行查找匹配的String方法，并且使用替换字符串替换掉匹配到的子字符串。
+split	一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的String方法。
+
